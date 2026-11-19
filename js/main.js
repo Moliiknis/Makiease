@@ -25,20 +25,20 @@
   var cep = window.__adobe_cep__;
 
   function evalHost(script, done) {
-    if (!cep) { toast("Панель открыта не в After Effects", true); return; }
+    if (!cep) { toast("The panel is not running inside After Effects", true); return; }
     cep.evalScript(script, function (res) { done(String(res || "")); });
   }
 
   var ERRORS = {
-    nocomp: "Откройте композицию",
-    nokeys: "Выделите ключевые кадры",
-    nosegments: "Выделите хотя бы два соседних ключа"
+    nocomp: "Open a composition",
+    nokeys: "Select keyframes",
+    nosegments: "Select at least two neighboring keyframes"
   };
 
   function handleResult(res, onOk) {
     if (res.indexOf("ok:") === 0) return onOk(res.slice(3));
     var code = res.indexOf("err:") === 0 ? res.slice(4) : res;
-    toast(ERRORS[code] || ("Ошибка: " + (code || "нет ответа от AE")), true);
+    toast(ERRORS[code] || ("Error: " + (code || "no response from AE")), true);
   }
 
   // Follow the host panel colour so the panel blends in with any AE brightness setting.
@@ -270,7 +270,7 @@
   function renderGrid() {
     var list = state.tab === "builtin" ? window.FLOW_PRESETS : loadSaved();
     if (!list.length) {
-      gridEl.innerHTML = '<div class="empty">Пусто. Настройте кривую и нажмите «+»<br>Правый клик по пресету — удалить</div>';
+      gridEl.innerHTML = '<div class="empty">Empty. Shape a curve and press +<br>Right-click a preset to delete it</div>';
       return;
     }
     gridEl.innerHTML = list.map(function (p, i) {
@@ -311,16 +311,16 @@
     var removed = list.splice(+el.dataset.i, 1)[0];
     storeSaved(list);
     renderGrid();
-    toast("Удалено: " + removed.name);
+    toast("Deleted: " + removed.name);
   });
 
   document.getElementById("save").addEventListener("click", function () {
     var list = loadSaved();
-    if (list.some(function (p) { return sameCurve(p.v, state.v); })) { toast("Такой пресет уже есть"); return; }
-    list.push({ name: "мой " + (list.length + 1), v: state.v.slice() });
+    if (list.some(function (p) { return sameCurve(p.v, state.v); })) { toast("This preset already exists"); return; }
+    list.push({ name: "my " + (list.length + 1), v: state.v.slice() });
     storeSaved(list);
     selectTab("saved");
-    toast("Сохранено в «Мои»");
+    toast("Saved to Mine");
   });
 
   function selectTab(tab) {
@@ -349,7 +349,7 @@
     var v = state.v;
     var script = "flowApply(" + v.join(",") + ',"' + state.mode + '")';
     evalHost(script, function (res) {
-      handleResult(res, function (n) { toast("Готово · сегментов: " + n); });
+      handleResult(res, function (n) { toast("Done · segments: " + n); });
     });
   }
 
@@ -362,7 +362,7 @@
         v[0] = Math.min(1, Math.max(0, v[0]));
         v[2] = Math.min(1, Math.max(0, v[2]));
         setCurve(v);
-        toast("Кривая взята с ключей");
+        toast("Curve read from keyframes");
       });
     });
   });

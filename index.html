@@ -12,28 +12,28 @@
         <canvas id="curve"></canvas>
       </div>
       <div class="row">
-        <input id="values" class="values" spellcheck="false" autocomplete="off" title="x1, y1, x2, y2 — можно вписать вручную">
-        <button id="save" class="icon" title="Сохранить в «Мои»">
+        <input id="values" class="values" spellcheck="false" autocomplete="off" title="x1, y1, x2, y2 - you can type them in">
+        <button id="save" class="icon" title="Save to Mine">
           <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg>
         </button>
       </div>
       <div class="row">
-        <button id="read" class="icon" title="Взять кривую с выделенных ключей">
+        <button id="read" class="icon" title="Read the curve from selected keyframes">
           <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v3M8 12v3M1 8h3M12 8h3"/></svg>
         </button>
-        <div class="seg" id="mode" role="radiogroup" title="К какой стороне ключей применять">
+        <div class="seg" id="mode" role="radiogroup" title="Which side of the keyframes to apply to">
           <button data-mode="in">In</button>
           <button data-mode="both" class="on">In · Out</button>
           <button data-mode="out">Out</button>
         </div>
       </div>
-      <button id="apply" class="apply">Применить</button>
+      <button id="apply" class="apply">Apply</button>
     </section>
 
     <section class="library">
       <div class="tabs">
-        <button data-tab="builtin" class="on">Пресеты</button>
-        <button data-tab="saved">Мои</button>
+        <button data-tab="builtin" class="on">Presets</button>
+        <button data-tab="saved">Mine</button>
       </div>
       <div id="grid" class="grid"></div>
     </section>

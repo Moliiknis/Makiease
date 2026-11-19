@@ -1,4 +1,4 @@
-# Builds release\Makiease-1.0.0-Setup.exe. Usage: .\build-installer.ps1 [-SkipBuild]
+# Builds release\Makiease-1.0.1-Setup.exe. Usage: .\build-installer.ps1 [-SkipBuild]
 # Needs Inno Setup 6 (winget install JRSoftware.InnoSetup).
 param([switch]$SkipBuild)
 $ErrorActionPreference = "Stop"
@@ -16,4 +16,4 @@ if (-not $iscc) { throw "Inno Setup 6 not found. Install it: winget install JRSo
 
 & $iscc /Qp "$PSScriptRoot\installer\Makiease.iss"
 if ($LASTEXITCODE -ne 0) { throw "Installer build failed." }
-Write-Host "Built: $PSScriptRoot\release\Makiease-1.0.0-Setup.exe"
+Write-Host "Built: $PSScriptRoot\release\Makiease-1.0.1-Setup.exe"
