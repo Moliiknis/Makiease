@@ -1,0 +1,183 @@
+:root {
+  --bg: #1f1f1f;
+  --surface: #2a2a2a;
+  --surface-hi: #333;
+  --line: #3a3a3a;
+  --grid: #2c2c2c;
+  --text: #d6d6d6;
+  --muted: #8a8a8a;
+  --accent: #8f7dff;
+  --accent-text: #fff;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 11px/1.3 "Segoe UI", system-ui, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  height: 24px;
+  cursor: pointer;
+}
+button:hover { background: var(--surface-hi); }
+button:focus-visible, input:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+
+#app {
+  display: flex;
+  height: 100%;
+  gap: 6px;
+  padding: 6px;
+}
+
+/* ---------- editor ---------- */
+
+.editor {
+  flex: 1 1 55%;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.canvas-wrap {
+  flex: 1;
+  min-height: 90px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+#curve { display: block; width: 100%; height: 100%; touch-action: none; }
+
+.row { display: flex; gap: 4px; }
+
+.values {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  padding: 0 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: 12px/1 Consolas, "Cascadia Mono", monospace;
+  text-align: center;
+  user-select: text;
+}
+.values.bad { border-color: #c9524a; }
+
+.icon {
+  width: 26px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.icon svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+
+.seg { flex: 1; display: flex; }
+.seg button { flex: 1; border-radius: 0; margin-left: -1px; color: var(--muted); }
+.seg button:first-child { border-radius: var(--radius) 0 0 var(--radius); margin-left: 0; }
+.seg button:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.seg button.on { color: var(--text); background: var(--surface-hi); border-color: #4a4a4a; position: relative; }
+
+.apply {
+  height: 28px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.apply:hover { background: #9d8dff; }
+.apply:active { transform: translateY(1px); }
+
+/* ---------- library ---------- */
+
+.library {
+  flex: 1 1 45%;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tabs { display: flex; gap: 4px; }
+.tabs button { flex: 1; color: var(--muted); }
+.tabs button.on { color: var(--text); border-color: var(--accent); }
+
+.grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  align-content: start;
+  gap: 4px;
+  padding-right: 2px;
+}
+.grid::-webkit-scrollbar { width: 6px; }
+.grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.preset {
+  height: auto;
+  padding: 5px 2px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border-color: transparent;
+  background: transparent;
+}
+.preset:hover { background: var(--surface); border-color: var(--line); }
+.preset.active { border-color: var(--accent); background: var(--surface); }
+.preset svg { width: 34px; height: 34px; overflow: visible; }
+.preset svg .frame { stroke: var(--line); fill: none; }
+.preset svg .c { stroke: var(--text); stroke-width: 1.6; fill: none; stroke-linecap: round; }
+.preset.active svg .c { stroke: var(--accent); }
+.preset span {
+  max-width: 100%;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty { grid-column: 1 / -1; color: var(--muted); padding: 12px 4px; text-align: center; }
+
+/* ---------- toast ---------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 42px;
+  transform: translate(-50%, 8px);
+  padding: 5px 10px;
+  background: #111;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s, transform .15s;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.toast.err { border-color: #c9524a; }
+
+/* Narrow docked panel: stack editor above the library. */
+@media (max-width: 330px) {
+  #app { flex-direction: column; }
+  .editor { flex: none; height: 62%; }
+}
