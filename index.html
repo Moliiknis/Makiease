@@ -1,23 +1,25 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Makiease</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/interface.css">
 </head>
 <body>
   <main id="app">
     <section class="editor">
       <div class="canvas-wrap">
         <canvas id="curve"></canvas>
+        <div class="gear-slot" id="gear-slot"></div>
       </div>
-      <div class="row">
+      <div class="row row-values">
         <input id="values" class="values" spellcheck="false" autocomplete="off" title="x1, y1, x2, y2 - you can type them in">
         <button id="save" class="icon" title="Save to Mine">
           <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg>
         </button>
       </div>
-      <div class="row">
+      <div class="row row-tools">
         <button id="read" class="icon" title="Read the curve from selected keyframes">
           <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 1v3M8 12v3M1 8h3M12 8h3"/></svg>
         </button>
@@ -39,6 +41,7 @@
     </section>
   </main>
   <div id="toast" class="toast"></div>
+  <script src="js/interface.js"></script>
   <script src="js/presets.js"></script>
   <script src="js/main.js"></script>
 </body>

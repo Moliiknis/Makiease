@@ -293,14 +293,17 @@
     return list[+el.dataset.i];
   }
 
+  // One click picks a preset; with "Apply preset with one click" it is also applied right away.
   gridEl.addEventListener("click", function (e) {
     var el = e.target.closest(".preset");
-    if (el) setCurve(presetFrom(el).v);
+    if (!el) return;
+    setCurve(presetFrom(el).v);
+    if (window.MakiInterface && MakiInterface.get("clickApply")) apply();
   });
 
   gridEl.addEventListener("dblclick", function (e) {
     var el = e.target.closest(".preset");
-    if (el) { setCurve(presetFrom(el).v); apply(); }
+    if (el && !(window.MakiInterface && MakiInterface.get("clickApply"))) { setCurve(presetFrom(el).v); apply(); }
   });
 
   gridEl.addEventListener("contextmenu", function (e) {
@@ -378,9 +381,46 @@
     toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 1800);
   }
 
+  // ---------- interface (Classic / Minimal / custom) ----------
+
+  function accent(id, label, color, rgb, dark) {
+    var vars = { "--accent": color, "--mi-accent": color, "--mi-glow": "rgba(" + rgb + ", 0.14)" };
+    if (dark) vars["--accent-text"] = "#141414";
+    return { id: id, label: label, swatch: color, vars: vars };
+  }
+
+  MakiInterface.init({
+    key: "makiease.interface.v1",
+    title: "Makiease",
+    mount: "#gear-slot",
+    options: [
+      { id: "values", label: "Curve values and save" },
+      { id: "read", label: "Read from keyframes" },
+      { id: "mode", label: "In / Out switch" },
+      { id: "library", label: "Preset library" },
+      { id: "tabs", label: "Presets / Mine tabs" },
+      { id: "names", label: "Preset names" },
+      { id: "clickApply", label: "Apply preset with one click", behavior: true }
+    ],
+    presets: {
+      classic: { density: "comfortable", show: { clickApply: false } },
+      minimal: { density: "compact", show: { values: false, read: false, mode: false, tabs: false, names: false, clickApply: true } }
+    },
+    accents: [
+      { id: "default", label: "Violet (default)", swatch: "#8f7dff", vars: {} },
+      accent("blue", "Blue", "#4da3ff", "77, 163, 255"),
+      accent("teal", "Teal", "#2ec4a6", "46, 196, 166", true),
+      accent("amber", "Amber", "#f2a33a", "242, 163, 58", true),
+      accent("pink", "Pink", "#ff6b9a", "255, 107, 154"),
+      accent("mono", "Mono", "#d9d9e0", "217, 217, 224", true)
+    ]
+  });
+
   // ---------- init ----------
 
   window.addEventListener("resize", layout);
+  // Showing or hiding parts of the panel resizes the canvas without a window resize.
+  if (window.ResizeObserver) new ResizeObserver(layout).observe(canvas.parentNode);
   layout();
   setCurve(state.v);
   renderGrid();

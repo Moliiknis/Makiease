@@ -9,6 +9,8 @@
   --accent: #8f7dff;
   --accent-text: #fff;
   --radius: 4px;
+  --mi-accent: var(--accent);
+  --mi-glow: rgba(143, 125, 255, 0.14);
 }
 
 * { box-sizing: border-box; margin: 0; }
@@ -52,6 +54,7 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--accent); ou
 }
 
 .canvas-wrap {
+  position: relative;
   flex: 1;
   min-height: 90px;
   background: var(--surface);
@@ -101,7 +104,7 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--accent); ou
   font-weight: 600;
   letter-spacing: .03em;
 }
-.apply:hover { background: #9d8dff; }
+.apply:hover { filter: brightness(1.12); }
 .apply:active { transform: translateY(1px); }
 
 /* ---------- library ---------- */
@@ -175,6 +178,30 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--accent); ou
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 .toast.err { border-color: #c9524a; }
+
+/* ---------- interface settings ---------- */
+
+.gear-slot { position: absolute; top: 4px; right: 4px; }
+
+.ui-hide-values .row-values,
+.ui-hide-read #read,
+.ui-hide-mode #mode,
+.ui-hide-read.ui-hide-mode .row-tools,
+.ui-hide-tabs .tabs,
+.ui-hide-names .preset span,
+.ui-hide-library .library { display: none; }
+
+.ui-hide-names .grid { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); }
+.ui-hide-names .preset { padding: 4px 2px; }
+
+[data-density="compact"] #app { gap: 4px; padding: 4px; }
+[data-density="compact"] .editor,
+[data-density="compact"] .library { gap: 3px; }
+[data-density="compact"] button,
+[data-density="compact"] .values { height: 21px; }
+[data-density="compact"] .apply { height: 23px; }
+[data-density="compact"] .preset { height: auto; padding: 3px 1px; }
+[data-density="compact"] .grid { gap: 2px; }
 
 /* Narrow docked panel: stack editor above the library. */
 @media (max-width: 330px) {

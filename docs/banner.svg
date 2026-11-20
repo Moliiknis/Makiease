@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="1280" height="420" role="img" aria-label="Makiease: Keyframe easing, one click away">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0a11"/><stop offset="1" stop-color="#12121c"/></linearGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c4b5fd"/><stop offset=".55" stop-color="#8f7dff"/><stop offset="1" stop-color="#6366f1"/></linearGradient>
+    <radialGradient id="core"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#c4b5fd"/><stop offset="1" stop-color="#8f7dff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="ball" cx=".35" cy=".35"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#c4b5fd"/><stop offset="1" stop-color="#8f7dff"/></radialGradient>
+    <radialGradient id="wheelCenter"><stop offset="0" stop-color="#ddd"/><stop offset=".25" stop-color="#bbb" stop-opacity=".8"/><stop offset="1" stop-color="#888" stop-opacity="0"/></radialGradient>
+    <linearGradient id="frameFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a3a"/><stop offset="1" stop-color="#1a1a26"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#fff" stroke-opacity=".035"/></pattern>
+    <filter id="blurBig" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
+    <filter id="blurMid" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+    <filter id="blurSmall" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="streak" x="-80%" y="-20%" width="260%" height="140%"><feGaussianBlur stdDeviation="26 2"/></filter>
+    <clipPath id="card"><rect width="1280" height="420" rx="28"/></clipPath>
+  </defs>
+  <g clip-path="url(#card)">
+    <rect width="1280" height="420" fill="url(#bg)"/>
+    <rect width="1280" height="420" fill="url(#grid)"/>
+    <circle cx="140" cy="40" r="220" fill="#c4b5fd" fill-opacity=".10" filter="url(#blurBig)"/>
+    
+  <circle cx="990" cy="210" r="200" fill="#8f7dff" fill-opacity=".16" filter="url(#blurBig)"/>
+  <rect x="890" y="112" width="206" height="206" rx="10" fill="#000" fill-opacity=".3" stroke="#fff" stroke-opacity=".1"/>
+  <line x1="890.0" y1="112" x2="890.0" y2="318" stroke="#fff" stroke-opacity=".06"/><line x1="890" y1="318.0" x2="1096" y2="318.0" stroke="#fff" stroke-opacity=".06"/><line x1="941.5" y1="112" x2="941.5" y2="318" stroke="#fff" stroke-opacity=".06"/><line x1="890" y1="266.5" x2="1096" y2="266.5" stroke="#fff" stroke-opacity=".06"/><line x1="993.0" y1="112" x2="993.0" y2="318" stroke="#fff" stroke-opacity=".06"/><line x1="890" y1="215.0" x2="1096" y2="215.0" stroke="#fff" stroke-opacity=".06"/><line x1="1044.5" y1="112" x2="1044.5" y2="318" stroke="#fff" stroke-opacity=".06"/><line x1="890" y1="163.5" x2="1096" y2="163.5" stroke="#fff" stroke-opacity=".06"/><line x1="1096.0" y1="112" x2="1096.0" y2="318" stroke="#fff" stroke-opacity=".06"/><line x1="890" y1="112.0" x2="1096" y2="112.0" stroke="#fff" stroke-opacity=".06"/>
+  <line x1="890" y1="318" x2="1018" y2="376" stroke="#c4b5fd" stroke-opacity=".7" stroke-width="2"/>
+  <line x1="1096" y1="112" x2="935" y2="54" stroke="#c4b5fd" stroke-opacity=".7" stroke-width="2"/>
+  <path id="easePath" d="M890 318 C1018 376, 935 54, 1096 112" fill="none" stroke="url(#titleGrad)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="1018" cy="376" r="7" fill="#0b0b12" stroke="#c4b5fd" stroke-width="2.5"/>
+  <circle cx="935" cy="54" r="7" fill="#0b0b12" stroke="#c4b5fd" stroke-width="2.5"/>
+  <circle r="8" fill="#fff"><animateMotion dur="2.6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.75;1" calcMode="linear"><mpath href="#easePath"/></animateMotion></circle>
+  <text x="1232" y="398" text-anchor="end" font-family="'Cascadia Mono',Consolas,'SFMono-Regular',monospace" font-size="13" fill="#8d8ea3">0.62, -0.28, 0.22, 1.28</text>
+    <text x="90" y="128" font-family="'Segoe UI Variable Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="6" fill="#8c8da3">MAKIMCHI · AFTER EFFECTS</text>
+    <text x="84" y="232" font-family="'Segoe UI Variable Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="100" font-weight="800" letter-spacing="-2" fill="url(#titleGrad)">Makiease</text>
+    <text x="90" y="284" font-family="'Segoe UI Variable Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="24" fill="#c3c3d4">Keyframe easing, one click away</text>
+    <rect x="88" y="326" width="104" height="30" rx="15" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".12"/><text x="140" y="346" text-anchor="middle" font-family="'Segoe UI Variable Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="14" fill="#c9c9d8">32 presets</text><rect x="202.0" y="326" width="153" height="30" rx="15" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".12"/><text x="279" y="346" text-anchor="middle" font-family="'Segoe UI Variable Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="14" fill="#c9c9d8">Your own presets</text><rect x="365.2" y="326" width="161" height="30" rx="15" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".12"/><text x="446" y="346" text-anchor="middle" font-family="'Segoe UI Variable Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif" font-size="14" fill="#c9c9d8">Classic · Minimal</text>
+  </g>
+  <rect x=".5" y=".5" width="1279" height="419" rx="28" fill="none" stroke="#fff" stroke-opacity=".08"/>
+</svg>
