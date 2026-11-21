@@ -12,7 +12,7 @@
 
 <p align="center"><b>English</b> · <a href="#русский">Русский</a></p>
 
-<p align="center"><a href="https://github.com/Moliiknis/Makiease/releases/latest"><b>⬇ Download Makiease-1.1.0-Setup.exe</b></a></p>
+<p align="center"><a href="https://github.com/Moliiknis/Makiease/releases/latest"><b>⬇ Download Makiease-1.2.0-Setup.exe</b></a></p>
 
 ## English
 
@@ -39,7 +39,7 @@ Choose how much interface you see. Two presets come built in, **Classic** (every
 
 ### Install
 
-1. Download **`Makiease-1.1.0-Setup.exe`** from [Releases](https://github.com/Moliiknis/Makiease/releases/latest).
+1. Download **`Makiease-1.2.0-Setup.exe`** from [Releases](https://github.com/Moliiknis/Makiease/releases/latest).
 2. Close After Effects and run the installer. No administrator rights needed.
 3. Start After Effects and open **Window › Extensions › Makiease**.
 
@@ -53,7 +53,7 @@ Choose how much interface you see. Two presets come built in, **Classic** (every
 Nothing to compile: the panel is plain HTML and JavaScript.
 
 ```powershell
-.\build-installer.ps1   # builds the plug-in and release\Makiease-1.1.0-Setup.exe
+.\build-installer.ps1   # builds the plug-in and release\Makiease-1.2.0-Setup.exe
 ```
 
 For development, `install.ps1` links the panel to the source folder instead of installing a copy.
@@ -97,7 +97,7 @@ For development, `install.ps1` links the panel to the source folder instead of i
 
 ### Установка
 
-1. Нужно скачать **`Makiease-1.1.0-Setup.exe`** со страницы [Releases](https://github.com/Moliiknis/Makiease/releases/latest).
+1. Нужно скачать **`Makiease-1.2.0-Setup.exe`** со страницы [Releases](https://github.com/Moliiknis/Makiease/releases/latest).
 2. Нужно закрыть After Effects и запустить установщик. Права администратора не нужны.
 3. Нужно открыть After Effects: **Окно › Расширения › Makiease**.
 
@@ -111,7 +111,7 @@ For development, `install.ps1` links the panel to the source folder instead of i
 Компилировать нечего: панель на обычных HTML и JavaScript.
 
 ```powershell
-.\build-installer.ps1   # собирает плагин и release\Makiease-1.1.0-Setup.exe
+.\build-installer.ps1   # собирает плагин и release\Makiease-1.2.0-Setup.exe
 ```
 
 Для разработки `install.ps1` подключает панель ссылкой на исходники вместо копии.

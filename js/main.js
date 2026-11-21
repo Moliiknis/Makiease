@@ -112,7 +112,8 @@
   var previewStart = performance.now();
 
   function draw(now) {
-    var accent = cssVar("--accent"), text = cssVar("--text"), line = cssVar("--line"), gridC = cssVar("--grid");
+    // Colors come from the AE theme, so the accent setting recolors the handles live.
+    var accent = cssVar("--value"), text = cssVar("--text-hi"), line = cssVar("--line-strong"), gridC = cssVar("--grid"), field = cssVar("--bg-field");
     ctx.setTransform(view.dpr, 0, 0, view.dpr, 0, 0);
     ctx.clearRect(0, 0, view.w, view.h);
 
@@ -156,10 +157,10 @@
     [p00, p11].forEach(function (p) { ctx.beginPath(); ctx.arc(p[0], p[1], 3, 0, 7); ctx.fill(); });
     [h1, h2].forEach(function (p, idx) {
       var active = state.drag === idx || state.hover === idx;
-      ctx.fillStyle = accent;
-      ctx.beginPath(); ctx.arc(p[0], p[1], active ? 6 : 5, 0, 7); ctx.fill();
-      ctx.fillStyle = cssVar("--surface");
-      ctx.beginPath(); ctx.arc(p[0], p[1], 2, 0, 7); ctx.fill();
+      ctx.fillStyle = field;
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(p[0], p[1], active ? 5.5 : 4.5, 0, 7); ctx.fill(); ctx.stroke();
     });
 
     // Preview: a dot travelling along a track with the current easing.
@@ -383,11 +384,21 @@
 
   // ---------- interface (Classic / Minimal / custom) ----------
 
-  function accent(id, label, color, rgb, dark) {
-    var vars = { "--accent": color, "--mi-accent": color, "--mi-glow": "rgba(" + rgb + ", 0.14)" };
-    if (dark) vars["--accent-text"] = "#141414";
-    return { id: id, label: label, swatch: color, vars: vars };
+  // Accent colors in the AE look: the action color, the blue-ish value text and the list selection.
+  function accent(id, label, color, value, select, selectLine, onColor) {
+    return {
+      id: id, label: label, swatch: color,
+      vars: { "--accent": color, "--accent-on": onColor || "#ffffff", "--value": value, "--select": select, "--select-line": selectLine }
+    };
   }
+  var ACCENTS = [
+    { id: "blue", label: "Blue (After Effects)", swatch: "#2680eb", vars: {} },
+    accent("violet", "Violet", "#7b61ff", "#a493ff", "#3b3560", "#5c4fa8"),
+    accent("teal", "Teal", "#12a594", "#3ccfbd", "#1f4a46", "#2f7a72"),
+    accent("amber", "Amber", "#d9821f", "#f0a54a", "#4f3b22", "#8a6230", "#141414"),
+    accent("pink", "Pink", "#d6456f", "#f0789a", "#4f2a37", "#8a3e58"),
+    accent("graphite", "Graphite", "#8a8a8a", "#d8d8d8", "#3d3d3d", "#5a5a5a", "#141414")
+  ];
 
   MakiInterface.init({
     key: "makiease.interface.v1",
@@ -406,14 +417,7 @@
       classic: { density: "comfortable", show: { clickApply: false } },
       minimal: { density: "compact", show: { values: false, read: false, mode: false, tabs: false, names: false, clickApply: true } }
     },
-    accents: [
-      { id: "default", label: "Violet (default)", swatch: "#8f7dff", vars: {} },
-      accent("blue", "Blue", "#4da3ff", "77, 163, 255"),
-      accent("teal", "Teal", "#2ec4a6", "46, 196, 166", true),
-      accent("amber", "Amber", "#f2a33a", "242, 163, 58", true),
-      accent("pink", "Pink", "#ff6b9a", "255, 107, 154"),
-      accent("mono", "Mono", "#d9d9e0", "217, 217, 224", true)
-    ]
+    accents: ACCENTS
   });
 
   // ---------- init ----------
